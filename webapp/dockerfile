@@ -1,0 +1,18 @@
+# Utiliser l'image de base officielle pour Go
+FROM golang:1.19 AS build
+
+# Définir le répertoire de travail dans le container
+WORKDIR /app
+
+# Copier les fichiers du projet dans le container
+COPY . .
+
+# Installer les dépendances et compiler l'application
+RUN go mod tidy
+RUN go build -o myapp .
+
+# Exposer le port sur lequel l'app écoute
+EXPOSE 8080
+
+# Lancer l'application
+CMD ["./myapp"]
