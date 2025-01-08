@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def appImage = docker.build("myteam/myapp:latest"; "/webapp")
+                    def appImage = docker.build("myteam/myapp:latest", "/webapp")
                 }
             }
         }
