@@ -10,8 +10,8 @@ pipeline {
             steps {
                 script {
                     docker.image('golang:1.19').inside {
-                        sh 'go mod tidy'
-                        sh 'go build -o myapp .'
+                        sh 'cd webapp && go mod tidy'
+                        sh 'cd webapp && go build -o myapp .'
                     }
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def appImage = docker.build("myteam/myapp:latest")
+                    def appImage = docker.build("myteam/myapp:latest"; "/webapp")
                 }
             }
         }
